@@ -18,7 +18,6 @@ export class UsersService {
 			throw new BadRequestException();
 		}
 		const user = await this.userRepository.createUser(createuserDto);
-		console.log(await this.authService.makeToken(user));
 		return await this.authService.makeToken(user);
 	}
 }

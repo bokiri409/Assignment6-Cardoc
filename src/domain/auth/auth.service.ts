@@ -20,7 +20,7 @@ export class AuthService {
 		return user;
 	}
 
-	async makeToken(user: Users) {
+	async makeToken(user: any) {
 		const payload = { user_id: user.user_id, user_name: user.user_name };
 		return { access_token: this.jwtService.sign(payload) };
 	}

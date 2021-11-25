@@ -1,6 +1,6 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { JwtModule, JwtService } from "@nestjs/jwt";
+import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Users } from "../entities/users.entity";

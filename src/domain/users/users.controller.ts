@@ -1,9 +1,12 @@
 import { Body, Controller, Post, Request, UseGuards } from "@nestjs/common";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { AuthService } from "../auth/auth.service";
 import { LocalAuthGuard } from "../auth/guard/localAuthGuard";
 import { CreateUserDto } from "./dto/createUser.dto";
+import { SignInUserDto } from "./dto/signInUser.dto";
 import { UsersService } from "./users.service";
 
+@ApiTags("유저 API")
 @Controller("users")
 export class UsersController {
 	constructor(
@@ -13,13 +16,16 @@ export class UsersController {
 
 	@Post("signup")
 	async signUp(@Body() body: CreateUserDto) {
-		return { token: await this.usersService.createUser(body) };
+		return await this.usersService.createUser(body);
 	}
 
 	@UseGuards(LocalAuthGuard)
 	@Post("signin")
-	async signIn(@Request() req) {
-		console.log(req.user);
-		return { token: this.authService.makeToken(req.user) };
+	@ApiOperation({
+		summary: "로그인 API",
+		description: "user_id, user_pw를 이용하여 로그인 한다."
+	})
+	async signIn(@Body() body: SignInUserDto) {
+		return await this.authService.makeToken(body);
 	}
 }
