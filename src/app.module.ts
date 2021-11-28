@@ -6,6 +6,7 @@ import { Users } from "./domain/entities/users.entity";
 import { UserRepository } from "./domain/users/users.repository";
 import { CarInfo } from "./domain/entities/carInfo.entity";
 import { ConfigModule } from "@nestjs/config";
+import { CarsModule } from "./domain/cars/cars.module";
 
 @Module({
 	imports: [
@@ -22,7 +23,8 @@ import { ConfigModule } from "@nestjs/config";
 			synchronize: true
 		}),
 		UsersModule,
-		AuthModule
+		AuthModule,
+		CarsModule
 	]
 
 	// controllers: [AppController, UserController, UsersController],
