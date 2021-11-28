@@ -13,17 +13,17 @@ import { CarInfo } from "./carInfo.entity";
 export class Users {
 	@PrimaryColumn("varchar", { length: 20, nullable: false })
 	@ApiProperty({ description: "user ID" })
-	user_id!: string;
+	userId!: string;
 
 	@Column("varchar", { length: 50, nullable: false })
 	@ApiProperty({ description: "user Name" })
-	user_name!: string;
+	userName!: string;
 
 	@Column("varchar", { length: 200, nullable: false })
 	@ApiProperty({ description: "user password" })
-	user_pw!: string;
+	password!: string;
 
-	@OneToMany(() => CarInfo, (carInfo) => carInfo.user_id)
+	@OneToMany(() => CarInfo, (carInfo) => carInfo.userId)
 	@ApiProperty({ description: "user carInformation" })
 	carInfo?: CarInfo[];
 

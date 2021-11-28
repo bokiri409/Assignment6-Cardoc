@@ -5,15 +5,15 @@ import * as bcrypt from "bcrypt";
 
 @EntityRepository(Users)
 export class UserRepository extends Repository<Users> {
-	async findUser(user_id: string) {
-		return await this.findOne({ user_id });
+	async findUser(userId: string) {
+		return await this.findOne({ userId });
 	}
 
 	async createUser(createUserDto: CreateUserDto) {
 		const newUser = new Users();
-		newUser.user_id = createUserDto.user_id;
-		newUser.user_pw = await bcrypt.hash(createUserDto.user_pw, 10);
-		newUser.user_name = createUserDto.user_name;
+		newUser.userId = createUserDto.userId;
+		newUser.password = await bcrypt.hash(createUserDto.password, 10);
+		newUser.userName = createUserDto.userName;
 
 		return await this.save(newUser);
 	}

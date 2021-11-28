@@ -11,7 +11,7 @@ export class UsersService {
 	) {}
 	async createUser(createuserDto: CreateUserDto) {
 		const findUser = await this.userRepository.findUser(
-			createuserDto.user_id
+			createuserDto.userId
 		);
 
 		if (findUser) {

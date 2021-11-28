@@ -5,15 +5,15 @@ export class CreateUserDto {
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({ type: String, description: "유저 ID" })
-	user_id!: string;
+	userId!: string;
 
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({ type: String, description: "유저 Password" })
-	user_pw!: string;
+	password!: string;
 
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({ type: String, description: "유저 name" })
-	user_name!: string;
+	userName!: string;
 }

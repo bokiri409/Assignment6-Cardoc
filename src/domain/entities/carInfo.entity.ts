@@ -11,13 +11,13 @@ import { Users } from "./users.entity";
 @Entity("carInfo")
 export class CarInfo {
 	@PrimaryColumn()
-	car_info_id!: number;
+	carInfoId!: number;
 
 	@ManyToOne(() => Users, (users) => users.carInfo)
-	user_id!: Users;
+	userId!: Users;
 
 	@Column()
-	trim_id?: number;
+	trimId?: number;
 
 	@CreateDateColumn()
 	createdAt!: Date;

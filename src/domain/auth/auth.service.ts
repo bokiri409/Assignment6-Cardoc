@@ -11,17 +11,20 @@ export class AuthService {
 		private readonly jwtService: JwtService
 	) {}
 
-	async validateUser(user_id: string, user_pw: string): Promise<any> {
-		const user = await this.userRepository.findUser(user_id);
+	async validateUser(userId: string, password: string): Promise<any> {
+		const user = await this.userRepository.findUser(userId);
 
-		if (!user || (user && !(await bcrypt.compare(user_pw, user.user_pw)))) {
+		if (
+			!user ||
+			(user && !(await bcrypt.compare(password, user.password)))
+		) {
 			return new BadRequestException();
 		}
 		return user;
 	}
 
 	async makeToken(user: any) {
-		const payload = { user_id: user.user_id, user_name: user.user_name };
+		const payload = { userId: user.userId, userName: user.userName };
 		return { access_token: this.jwtService.sign(payload) };
 	}
 }
