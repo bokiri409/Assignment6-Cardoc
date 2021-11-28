@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, UseGuards } from "@nestjs/common";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { AuthService } from "../auth/auth.service";
 import { LocalAuthGuard } from "../auth/guard/localAuthGuard";
@@ -15,6 +15,10 @@ export class UsersController {
 	) {}
 
 	@Post("signup")
+	@ApiOperation({
+		summary: "회원가입 API",
+		description: "userId, password, userName을 이용하여 회원가입 한다."
+	})
 	async signUp(@Body() body: CreateUserDto) {
 		return await this.usersService.createUser(body);
 	}
@@ -23,7 +27,7 @@ export class UsersController {
 	@Post("signin")
 	@ApiOperation({
 		summary: "로그인 API",
-		description: "user_id, user_pw를 이용하여 로그인 한다."
+		description: "userId, password를 이용하여 로그인 한다."
 	})
 	async signIn(@Body() body: SignInUserDto) {
 		return await this.authService.makeToken(body);
