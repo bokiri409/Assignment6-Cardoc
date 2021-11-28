@@ -4,6 +4,10 @@ import { CarsInfoDto } from "./dto/carsInfo.dto";
 
 @EntityRepository(CarInfo)
 export class CarsRepository extends Repository<CarInfo> {
+	async findCar(userId: string) {
+		return await this.find({ userId });
+	}
+
 	async carInfo(carsInfoDto: CarsInfoDto) {
 		const car = new CarInfo();
 		car.userId = carsInfoDto.userId;

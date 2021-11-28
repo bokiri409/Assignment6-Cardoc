@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { HttpModule, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CarInfo } from "../entities/carInfo.entity";
 import { Users } from "../entities/users.entity";
@@ -14,7 +14,8 @@ import { CarsService } from "./cars.service";
 			UserRepository,
 			CarsRepository,
 			CarInfo
-		])
+		]),
+		HttpModule
 	],
 	controllers: [CarsController],
 	providers: [CarsService]
